@@ -1,0 +1,16 @@
+{
+    "access_token": "$pbkdf2-sha256$29000$G8P4H0Oode4dw9j7vxeilA$bBHgxKPwTo5pLsdZ5E4gHymC.yulRJzq9asgYKvuerE",
+    "benches_directory": "/home/press/benches",
+    "db_port": 3306,
+    "gunicorn_workers": 2,
+    "job_timeout": 14400,
+    "name": "app-server-01",
+    "nginx_directory": "/home/press/agent-data/nginx",
+    "press_url": "http://press.localhost:8003",
+    "redis_port": 25025,
+    "tls_directory": "/home/press/agent-data/tls",
+    "user": "press",
+    "web_port": 25052,
+    "workers": 2,
+    "domain": "localhost"
+}

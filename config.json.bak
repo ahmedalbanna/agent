@@ -1,0 +1,14 @@
+{
+    "benches_directory": "/home/frappe/benches",
+    "db_port": 3306,
+    "gunicorn_workers": 2,
+    "job_timeout": 14400,
+    "name": "app-server-01",
+    "nginx_directory": "/home/frappe/agent/nginx",
+    "press_url": "http://press.localhost:8003",
+    "redis_port": 25025,
+    "tls_directory": "/home/frappe/agent/tls",
+    "user": "frappe",
+    "web_port": 25052,
+    "workers": 2
+}

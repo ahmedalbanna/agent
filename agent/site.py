@@ -650,19 +650,19 @@ class Site(Base):
             )
             region = auth.get("REGION")
 
+            # ENDPOINT_URL comes from the cluster Backup Bucket doc (e.g. a
+            # loopback MinIO). Without it boto3 speaks real AWS, which is
+            # correct for AWS buckets and wrong for everything else.
+            client_kwargs: dict = {
+                "aws_access_key_id": auth["ACCESS_KEY"],
+                "aws_secret_access_key": auth["SECRET_KEY"],
+            }
             if region:
-                s3 = boto3.client(
-                    "s3",
-                    aws_access_key_id=auth["ACCESS_KEY"],
-                    aws_secret_access_key=auth["SECRET_KEY"],
-                    region_name=region,
-                )
-            else:
-                s3 = boto3.client(
-                    "s3",
-                    aws_access_key_id=auth["ACCESS_KEY"],
-                    aws_secret_access_key=auth["SECRET_KEY"],
-                )
+                client_kwargs["region_name"] = region
+            endpoint_url = auth.get("ENDPOINT_URL")
+            if endpoint_url:
+                client_kwargs["endpoint_url"] = endpoint_url
+            s3 = boto3.client("s3", **client_kwargs)
 
             for backup_file in backup_files.values():
                 file_name = backup_file["file"].split(os.sep)[-1]
